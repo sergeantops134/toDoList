@@ -35,3 +35,15 @@ export function getTimeStamp(str){
     time[1] -= 1;
     return new Date(...time).getTime();
 }
+
+function getCheckBoxes(){
+    return document.querySelectorAll(".is-done");
+}
+
+export function updateDone(){
+    getCheckBoxes().forEach((item, index)=>{
+        tasksPresent[index].isCompleted = item.checked;
+    });
+
+    refreshTasks(tasksPresent);
+}
