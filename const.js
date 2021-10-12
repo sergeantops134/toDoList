@@ -1,0 +1,9 @@
+export const textInput = document.querySelector("#newText");
+export const modalText = document.querySelector("#modalText")
+export const plusBtn = document.querySelector(".plus-button");
+export const taskHolder = document.querySelector(".task-holder");
+export const cancelBtn = document.querySelector("#cancelBtn");
+export const okButton = document.querySelector("#okBtn");
+export const modalStart = document.querySelector("#modalStart");
+export const modalEnd = document.querySelector("#modalEnd")
+export const tasksPresent = [];
