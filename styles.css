@@ -1,0 +1,41 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+h1{
+    text-align: center;
+}
+
+.container{
+    margin: 20px auto;
+    width: 70%;
+    border-radius: 15px;
+    border: 3px solid;
+}
+
+.text-input{
+    border-radius: 3px;
+    margin: 20px 0 0 15%;
+    width: 20%;
+    display: inline-block;
+}
+.task-holder{
+    min-height: 100px;
+    height: fit-content;
+}
+.task-holder h2{
+    margin: 45px auto;
+    width: fit-content;
+}
+
+.plus-button{
+    margin: 20px 0 0 0;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.wrong-input{
+    background-color: red;
+}
