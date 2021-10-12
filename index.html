@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>TO DO LIST</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<script src="app.js"></script>
+<div class="container">
+    <h1>To Do List</h1>
+    <hr>
+    <div class="task-holder">
+        <h2>No tasks present</h2>
+    </div>
+    <hr>
+</div>
+<div>
+    <input id="newText"class="text-input" type="text" placeholder="Type your task here">
+    <button class="plus-button">+</button>
+</div>
+<div class="modal hide">
+    <div class="modal-content">
+        <p class="text">Task:</p>
+        <input id="modalText" type="text">
+        <hr>
+        <span class="text">Started</span>
+        <input type="date" id="modalStart">
+        <hr>
+        <span class="text">Ends</span>
+        <input type="date" id="modalEnd">
+        <hr>
+        <button class="text-button" id="okBtn">OK</button>
+        <button class="text-button" id="cancelBtn">Cancel</button>
+    </div>
+</div>
+<script src="app.js" type="module"></script>
 </body>
 </html>
