@@ -1,8 +1,9 @@
 import {Task} from "./Task.js";
-import {validate, addDefault, refreshTasks, getTimeStamp} from "./utils.js";
+import {validate, addDefault, refreshTasks, getTimeStamp, updateDone} from "./utils.js";
 import {Modal} from "./Modal.js";
 import {textInput, modalText, plusBtn, cancelBtn, okButton, modalStart, modalEnd, taskHolder, tasksPresent} from "./const.js";
 
+taskHolder.addEventListener("click", updateDone);
 textInput.addEventListener("input", validate);
 modalText.addEventListener("input", validate);
 textInput.addEventListener("keyup", addDefault);
@@ -16,7 +17,6 @@ okButton.addEventListener("click", ()=>{
     const start = getTimeStamp(modalStart.value);
     const end = getTimeStamp(modalEnd.value);
 
-    console.log(modalStart.value, modalEnd.value, start > end, start < Date.now(), end < Date.now());
 
     if(start > end || start < Date.now() || end < Date.now()){
         modal.invalidInput();

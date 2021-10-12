@@ -1,51 +1,52 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
-body{
+body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
 }
-h1{
+h1 {
     text-align: center;
 }
 
-.container{
+.container {
     margin: 20px auto;
     width: 70%;
     border-radius: 15px;
     border: 3px solid;
 }
 
-.text-input{
+.text-input {
     border-radius: 3px;
     margin: 20px 0 0 15%;
     width: 400px;
     display: inline-block;
 }
-.task-holder{
+.task-holder {
     min-height: 100px;
     height: fit-content;
 }
-.task-holder h2{
+.task-holder h2 {
     margin: 45px auto;
     width: fit-content;
 }
 
-.plus-button{
+.plus-button {
     margin: 20px 0 0 0;
     display: inline-block;
     border-radius: 3px;
 }
 
-.task{
+.task {
     margin: 5px 10px 0 10px;
     padding: 5px;
     border-radius: 15px;
     border: 3px dashed;
+    display: flex;
 }
 
-.modal{
+.modal {
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -63,22 +64,46 @@ h1{
     border: 1px solid black;
 }
 
-.hide{
+.hide {
     display: none;
 }
-.no-scroll{
+.no-scroll {
     overflow: hidden;
 }
 
-.text-button{
+.text-button {
 border-radius: 3px;
     margin: 10px;
 }
-.text{
+.text {
     display: inline-block;
     margin: 5px 5px 0 10px;
 }
-.wrong{
+.wrong {
     box-shadow: 5px 5px 5px red ;
 }
 
+.task-text {
+    display: flex;
+    flex-direction: column;
+    flex: 0.9;
+    border-left: 1px solid grey;
+    padding-left: 10px;
+}
+.task-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 0.1;
+}
+
+.is-done {
+    width: 30px;
+    height: 30px;
+}
+
+.done {
+    color: grey;
+    text-decoration: line-through;
+}
