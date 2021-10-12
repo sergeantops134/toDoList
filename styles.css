@@ -86,13 +86,22 @@ border-radius: 3px;
 .task-text {
     display: flex;
     flex-direction: column;
-    flex: 0.9;
+    flex: 0.8;
+    border-right: 1px solid grey;
     border-left: 1px solid grey;
+
     padding-left: 10px;
 }
 .task-controls {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 0.1;
+}
+
+.task-delete {
+    display: flex;
     align-items: center;
     justify-content: center;
     flex: 0.1;
@@ -106,4 +115,8 @@ border-radius: 3px;
 .done {
     color: grey;
     text-decoration: line-through;
+}
+
+.cros-button {
+    color: red;
 }

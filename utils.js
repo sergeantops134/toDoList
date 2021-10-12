@@ -25,9 +25,9 @@ export function refreshTasks(tasksToShow) {
         taskHolder.insertAdjacentHTML("beforeend", `<h2>No tasks present</h2>`);
         return;
     }
-    for (let task of tasksToShow) {
-        taskHolder.insertAdjacentHTML("beforeend", task.getTaskMarkup());
-    }
+    tasksToShow.forEach( (task, index)=>{
+        taskHolder.insertAdjacentHTML("beforeend", task.getTaskMarkup(index));
+    });
 }
 
 export function getTimeStamp(str) {
@@ -45,5 +45,10 @@ export function updateDone() {
         tasksPresent[index].isCompleted = item.checked;
     });
 
+    refreshTasks(tasksPresent);
+}
+
+export function deleteAt(index){
+    tasksPresent.splice(index, 1);
     refreshTasks(tasksPresent);
 }
