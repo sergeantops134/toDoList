@@ -10,7 +10,7 @@ export class Task {
         this.isCompleted = false;
     }
 
-    getTaskMarkup() {
+    getTaskMarkup(index) {
         return `
         <div class="task${this.isCompleted ? " done" : ""}">
             <div class="task-controls">
@@ -20,7 +20,10 @@ export class Task {
                 <p>Task: ${this.description}</p>
                 <p>Started: ${this.start}</p>
                 <p>Ends: ${this.end}</p>
-            </div>            
+            </div>  
+            <div class="task-delete">
+            <button class="cros-button" value="${index}">X</button>
+            </div>          
         <div>
     `;
     }
