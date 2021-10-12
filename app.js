@@ -4,11 +4,16 @@ import {Modal} from "./Modal.js";
 import {textInput, modalText, plusBtn, cancelBtn, okButton, modalStart, modalEnd, taskHolder, tasksPresent} from "./const.js";
 
 taskHolder.addEventListener("click", (event) => {
-    const isChecling = event.target.classList.contains("is-done");
-    if (isChecling) {
+    const isChecking = event.target.classList.contains("is-done");
+    const isDeleting = event.target.classList.contains("cros-button");
+    const isEditing = event.target.classList.contains("pencil-button");
+
+    if (isChecking) {
         updateDone();
-    } else {
+    } else if (isDeleting) {
         deleteAt(event.target.value);
+    } else if (isEditing) {
+        modal.showModal(event.target.value);
     }
 });
 textInput.addEventListener("input", validate);
@@ -23,9 +28,7 @@ cancelBtn.addEventListener("click", () => {
 okButton.addEventListener("click", () => {
     const start = getTimeStamp(modalStart.value);
     const end = getTimeStamp(modalEnd.value);
-
-
-    if(start > end || start < Date.now() || end < Date.now()){
+    if(start > end || start < Date.now() - 8.64e+7 || end < Date.now() || modalText.value === ""){
         modal.invalidInput();
         return;
     }

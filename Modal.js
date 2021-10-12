@@ -1,5 +1,5 @@
 import {Task} from "./Task.js"
-import {modalEnd, modalStart, modalText} from "./const.js";
+import {modalEnd, modalStart, modalText, tasksPresent} from "./const.js";
 
 
 export class Modal {
@@ -8,8 +8,8 @@ export class Modal {
     taskIndex;
     tasksReference;
 
-    constructor(arr) {
-        this.tasksReference = arr;
+    constructor() {
+
         this.modal = document.querySelector(".modal");
         this.body = document.querySelector("body");
     }
@@ -18,6 +18,11 @@ export class Modal {
         this.taskIndex = taskIndex;
         this.body.classList.add("no-scroll");
         this.modal.classList.remove("hide");
+        if (taskIndex !== undefined){
+            modalText.value = tasksPresent[taskIndex].description;
+            modalStart.value = tasksPresent[taskIndex].getInputDate("start");
+            modalEnd.value = tasksPresent[taskIndex].getInputDate("end");
+        }
     }
 
     hideModal() {
@@ -34,7 +39,9 @@ export class Modal {
     getResult(obj) {
         const task = new Task(obj);
         if (this.taskIndex === undefined){
-            this.tasksReference.push(task);
+            tasksPresent.push(task);
+        } else {
+            tasksPresent[this.taskIndex] = task;
         }
     }
 

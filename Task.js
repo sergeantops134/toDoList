@@ -22,10 +22,15 @@ export class Task {
                 <p>Ends: ${this.end}</p>
             </div>  
             <div class="task-delete">
-            <button class="cros-button" value="${index}">X</button>
+                <button class="pencil-button" value="${index}"></button>
+                <button class="cros-button" value="${index}">X</button>
             </div>          
         <div>
     `;
     }
-
+    getInputDate(selector){
+        return this[selector].split(".").reverse().join("-");
+    }
 }
+
+

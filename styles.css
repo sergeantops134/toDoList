@@ -36,6 +36,7 @@ h1 {
     margin: 20px 0 0 0;
     display: inline-block;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .task {
@@ -74,6 +75,7 @@ h1 {
 .text-button {
 border-radius: 3px;
     margin: 10px;
+    cursor: pointer;
 }
 .text {
     display: inline-block;
@@ -110,6 +112,18 @@ border-radius: 3px;
 .is-done {
     width: 30px;
     height: 30px;
+    cursor: pointer;
+}
+
+
+.pencil-button {
+    border-radius: 3px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    overflow: hidden;
+    background-size: 26px;
+    background-image: url(https://image.flaticon.com/icons/png/512/122/122105.png);
 }
 
 .done {
@@ -118,5 +132,9 @@ border-radius: 3px;
 }
 
 .cros-button {
+    margin: 8px;
     color: red;
+    cursor: pointer;
+    max-width: fit-content;
+    border-radius: 3px;
 }
