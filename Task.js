@@ -1,4 +1,4 @@
-export class Task{
+export class Task {
     description;
     start;
     end;
@@ -10,11 +10,11 @@ export class Task{
         this.isCompleted = false;
     }
 
-    getTaskMarkup(){
+    getTaskMarkup() {
         return `
-        <div class="task${this.isCompleted? " done" : ""}">
+        <div class="task${this.isCompleted ? " done" : ""}">
             <div class="task-controls">
-            <input type="checkbox" class="is-done" ${this.isCompleted? "checked" : ""}>
+            <input type="checkbox" class="is-done" ${this.isCompleted ? "checked" : ""}>
             </div>
             <div class="task-text">
                 <p>Task: ${this.description}</p>
