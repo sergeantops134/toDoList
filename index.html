@@ -15,9 +15,24 @@
     <hr>
 </div>
 <div>
-    <input class="text-input" type="text" placeholder="Type your task here">
+    <input id="newText"class="text-input" type="text" placeholder="Type your task here">
     <button class="plus-button">+</button>
 </div>
-<script type="module" src="app.js"></script>
+<div class="modal hide">
+    <div class="modal-content">
+        <p class="text">Task:</p>
+        <input id="modalText" type="text">
+        <hr>
+        <span class="text">Started</span>
+        <input type="date" id="modalStart">
+        <hr>
+        <span class="text">Ends</span>
+        <input type="date" id="modalEnd">
+        <hr>
+        <button class="text-button" id="okBtn">OK</button>
+        <button class="text-button" id="cancelBtn">Cancel</button>
+    </div>
+</div>
+<script src="app.js" type="module"></script>
 </body>
 </html>
