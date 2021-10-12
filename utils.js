@@ -25,7 +25,7 @@ export function refreshTasks(tasksToShow) {
         taskHolder.insertAdjacentHTML("beforeend", `<h2>No tasks present</h2>`);
         return;
     }
-    tasksToShow.forEach( (task, index)=>{
+    tasksToShow.forEach((task, index)=>{
         taskHolder.insertAdjacentHTML("beforeend", task.getTaskMarkup(index));
     });
 }
@@ -41,7 +41,7 @@ function getCheckBoxes() {
 }
 
 export function updateDone() {
-    getCheckBoxes().forEach((item, index)=>{
+    getCheckBoxes().forEach((item, index) => {
         tasksPresent[index].isCompleted = item.checked;
     });
 

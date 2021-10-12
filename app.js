@@ -3,24 +3,24 @@ import {validate, addDefault, refreshTasks, getTimeStamp, updateDone, deleteAt} 
 import {Modal} from "./Modal.js";
 import {textInput, modalText, plusBtn, cancelBtn, okButton, modalStart, modalEnd, taskHolder, tasksPresent} from "./const.js";
 
-taskHolder.addEventListener("click", (event)=>{
-    if (event.target.classList.contains("is-done")) {
+taskHolder.addEventListener("click", (event) => {
+    const isChecling = event.target.classList.contains("is-done");
+    if (isChecling) {
         updateDone();
     } else {
-        console.log(event.target.value);
         deleteAt(event.target.value);
     }
 });
 textInput.addEventListener("input", validate);
 modalText.addEventListener("input", validate);
 textInput.addEventListener("keyup", addDefault);
-plusBtn.addEventListener("click", ()=>{
+plusBtn.addEventListener("click", () => {
     modal.showModal();
 });
-cancelBtn.addEventListener("click", ()=>{
+cancelBtn.addEventListener("click", () => {
     modal.hideModal();
 });
-okButton.addEventListener("click", ()=>{
+okButton.addEventListener("click", () => {
     const start = getTimeStamp(modalStart.value);
     const end = getTimeStamp(modalEnd.value);
 
