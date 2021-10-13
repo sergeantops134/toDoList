@@ -7,3 +7,4 @@ export const okButton = document.querySelector("#okBtn");
 export const modalStart = document.querySelector("#modalStart");
 export const modalEnd = document.querySelector("#modalEnd")
 export const tasksPresent = [];
+export const MILISECONDS_IN_DAY = 8.64e+7;

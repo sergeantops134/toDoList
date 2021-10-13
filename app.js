@@ -1,7 +1,18 @@
 import {Task} from "./Task.js";
 import {validate, addDefault, refreshTasks, getTimeStamp, updateDone, deleteAt} from "./utils.js";
 import {Modal} from "./Modal.js";
-import {textInput, modalText, plusBtn, cancelBtn, okButton, modalStart, modalEnd, taskHolder, tasksPresent} from "./const.js";
+import {
+    textInput,
+    modalText,
+    plusBtn,
+    cancelBtn,
+    okButton,
+    modalStart,
+    modalEnd,
+    taskHolder,
+    tasksPresent,
+    MILISECONDS_IN_DAY
+} from "./const.js";
 
 taskHolder.addEventListener("click", (event) => {
     const isChecking = event.target.classList.contains("is-done");
@@ -28,7 +39,7 @@ cancelBtn.addEventListener("click", () => {
 okButton.addEventListener("click", () => {
     const start = getTimeStamp(modalStart.value);
     const end = getTimeStamp(modalEnd.value);
-    if(start > end || start < Date.now() - 8.64e+7 || end < Date.now() || modalText.value === ""){
+    if(start > end || start < Date.now() - MILISECONDS_IN_DAY || end < Date.now() || modalText.value === ""){
         modal.invalidInput();
         return;
     }
