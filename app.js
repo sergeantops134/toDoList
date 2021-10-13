@@ -1,23 +1,32 @@
-import {Task} from "./Task.js";
-import {validate, addDefault, refreshTasks, getTimeStamp, updateDone, deleteAt} from "./utils.js";
-import {Modal} from "./Modal.js";
 import {
-    textInput,
-    modalText,
-    plusBtn,
-    cancelBtn,
-    okButton,
-    modalStart,
-    modalEnd,
-    taskHolder,
+    validate,
+    addDefault,
+    refreshTasks,
+    getTimeStamp,
+    updateDone,
+    deleteAt,
+    isDateInvalid,
+    getDateFromInput,
+    checkChildType,
+} from "./utils.js";
+import {
+    TEXT_INPUT,
+    MODAL_TEXT,
+    PLUS_BUTTON,
+    CANCEL_BUTTON,
+    OK_BUTTON,
+    MODAL_START_INPUT,
+    MODAL_END_INPUT,
+    TASKS_HOLDER,
     tasksPresent,
-    MILISECONDS_IN_DAY
+    modal,
+    SHOW_ALL_BUTTON, SHOW_ACTIVE_BUTTON, SHOW_COMPLETED_BUTTON, CLEAR_COMPLETED_BUTTON,
 } from "./const.js";
 
-taskHolder.addEventListener("click", (event) => {
-    const isChecking = event.target.classList.contains("is-done");
-    const isDeleting = event.target.classList.contains("cros-button");
-    const isEditing = event.target.classList.contains("pencil-button");
+TASKS_HOLDER.addEventListener("click", (event) => {
+    const isChecking = checkChildType(event.target, "is-done");
+    const isDeleting = checkChildType(event.target, "cros-button");
+    const isEditing = checkChildType(event.target, "pencil-button");
 
     if (isChecking) {
         updateDone();
@@ -27,32 +36,61 @@ taskHolder.addEventListener("click", (event) => {
         modal.showModal(event.target.value);
     }
 });
-textInput.addEventListener("input", validate);
-modalText.addEventListener("input", validate);
-textInput.addEventListener("keyup", addDefault);
-plusBtn.addEventListener("click", () => {
-    modal.showModal();
-});
-cancelBtn.addEventListener("click", () => {
+
+TEXT_INPUT.addEventListener("input", validate);
+MODAL_TEXT.addEventListener("input", validate);
+
+TEXT_INPUT.addEventListener("keyup", addDefault);
+
+CANCEL_BUTTON.addEventListener("click", () => {
     modal.hideModal();
 });
-okButton.addEventListener("click", () => {
-    const start = getTimeStamp(modalStart.value);
-    const end = getTimeStamp(modalEnd.value);
-    if(start > end || start < Date.now() - MILISECONDS_IN_DAY || end < Date.now() || modalText.value === ""){
+OK_BUTTON.addEventListener("click", () => {
+    const start = getTimeStamp(MODAL_START_INPUT.value);
+    const end = getTimeStamp(MODAL_END_INPUT.value);
+    if(isDateInvalid(start, end)){
         modal.invalidInput();
         return;
     }
-    const obj = {description: modalText.value,
-        start: modalStart.value.split("-").reverse().join("."),
-        end: modalEnd.value.split("-").reverse().join(".")}
+    const obj = {
+        description: MODAL_TEXT.value,
+        start: getDateFromInput(MODAL_START_INPUT),
+        end: getDateFromInput(MODAL_END_INPUT),
+    }
     modal.getResult(obj);
     modal.hideModal();
     refreshTasks(tasksPresent);
 });
 
+PLUS_BUTTON.addEventListener("click", () => {
+    modal.showModal();
+});
+SHOW_ALL_BUTTON.addEventListener("click", () => {
+    tasksPresent.forEach( (task) => {
+        task.toBeDisplayed = true;
+    });
 
-const modal = new Modal(tasksPresent);
+    refreshTasks(tasksPresent);
+});
+SHOW_ACTIVE_BUTTON.addEventListener("click", () => {
+    tasksPresent.forEach( (task) => {
+        task.toBeDisplayed = !(task.isCompleted);
+    });
+    refreshTasks(tasksPresent);
+});
+SHOW_COMPLETED_BUTTON.addEventListener("click", () => {
+    tasksPresent.forEach( (task) => {
+        task.toBeDisplayed = task.isCompleted;
+    });
+    refreshTasks(tasksPresent);
+});
+CLEAR_COMPLETED_BUTTON.addEventListener("click", () => {
+    const tasksActive = tasksPresent.filter( (task) => !(task.isCompleted) );
+    tasksPresent.splice(0, tasksPresent.length, ...tasksActive);
+
+    refreshTasks(tasksPresent);
+});
+
 
 
 

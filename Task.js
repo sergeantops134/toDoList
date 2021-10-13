@@ -3,18 +3,19 @@ export class Task {
     start;
     end;
     isCompleted;
+    toBeDisplayed;
 
     constructor(obj) {
-        Object.assign(this, obj)
-
+        Object.assign(this, obj);
         this.isCompleted = false;
+        this.toBeDisplayed = true;
     }
 
     getTaskMarkup(index) {
         return `
-        <div class="task${this.isCompleted ? " done" : ""}">
+        <div class="task${this.isCompleted ? " done" : ""}${this.toBeDisplayed ? "" : " hide"}">
             <div class="task-controls">
-            <input type="checkbox" class="is-done" ${this.isCompleted ? "checked" : ""}>
+                <input type="checkbox" class="is-done" ${this.isCompleted ? "checked" : ""}>
             </div>
             <div class="task-text">
                 <p>Task: ${this.description}</p>
@@ -28,7 +29,8 @@ export class Task {
         <div>
     `;
     }
-    getInputDate(selector){
+
+    getInputDate(selector) {
         return this[selector].split(".").reverse().join("-");
     }
 }

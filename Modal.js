@@ -1,15 +1,13 @@
 import {Task} from "./Task.js"
-import {modalEnd, modalStart, modalText, tasksPresent} from "./const.js";
+import {MODAL_END_INPUT, MODAL_START_INPUT, MODAL_TEXT, tasksPresent} from "./const.js";
 
 
 export class Modal {
     modal;
     body;
     taskIndex;
-    tasksReference;
 
     constructor() {
-
         this.modal = document.querySelector(".modal");
         this.body = document.querySelector("body");
     }
@@ -18,10 +16,10 @@ export class Modal {
         this.taskIndex = taskIndex;
         this.body.classList.add("no-scroll");
         this.modal.classList.remove("hide");
-        if (taskIndex !== undefined){
-            modalText.value = tasksPresent[taskIndex].description;
-            modalStart.value = tasksPresent[taskIndex].getInputDate("start");
-            modalEnd.value = tasksPresent[taskIndex].getInputDate("end");
+        if (taskIndex !== undefined) {
+            MODAL_TEXT.value = tasksPresent[taskIndex].description;
+            MODAL_START_INPUT.value = tasksPresent[taskIndex].getInputDate("start");
+            MODAL_END_INPUT.value = tasksPresent[taskIndex].getInputDate("end");
         }
     }
 
@@ -29,16 +27,16 @@ export class Modal {
         this.body.classList.remove("no-scroll");
         this.modal.classList.add("hide");
         this.taskIndex = undefined;
-        modalText.value = "";
-        modalStart.value = "";
-        modalEnd.value = "";
-        modalStart.classList.remove("wrong");
-        modalEnd.classList.remove("wrong");
+        MODAL_TEXT.value = "";
+        MODAL_START_INPUT.value = "";
+        MODAL_END_INPUT.value = "";
+        MODAL_START_INPUT.classList.remove("wrong");
+        MODAL_END_INPUT.classList.remove("wrong");
     }
 
     getResult(obj) {
         const task = new Task(obj);
-        if (this.taskIndex === undefined){
+        if (this.taskIndex === undefined) {
             tasksPresent.push(task);
         } else {
             tasksPresent[this.taskIndex] = task;
@@ -46,7 +44,8 @@ export class Modal {
     }
 
     invalidInput() {
-        modalStart.classList.add("wrong");
-        modalEnd.classList.add("wrong");
+        MODAL_TEXT.classList.add("wrong");
+        MODAL_START_INPUT.classList.add("wrong");
+        MODAL_END_INPUT.classList.add("wrong");
     }
 }

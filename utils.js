@@ -1,5 +1,6 @@
 import {
-    taskHolder,
+    MILISECONDS_IN_DAY, MODAL_TEXT,
+    TASKS_HOLDER,
     tasksPresent
 } from "./const.js";
 import {Task} from "./Task.js";
@@ -9,24 +10,28 @@ export function validate(event) {
 }
 
 export function addDefault(event) {
-    if(event.code !== "Enter" || event.target.value === "") return;
+    if (event.code !== "Enter" || event.target.value === "") return;
+
     const date = new Date();
     const start = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
     const end = `${date.getDate() + 1}.${date.getMonth() + 1}.${date.getFullYear()}`;
 
-    tasksPresent.push(new Task({description: event.target.value, start: start, end: end}));
+    tasksPresent.push(new Task({description: event.target.value, start: start, end: end}) );
+
     refreshTasks(tasksPresent);
     event.target.value = "";
 }
 
 export function refreshTasks(tasksToShow) {
-    taskHolder.innerHTML = "";
+    TASKS_HOLDER.innerHTML = "";
+
     if(!(tasksToShow.length)) {
-        taskHolder.insertAdjacentHTML("beforeend", `<h2>No tasks present</h2>`);
+        TASKS_HOLDER.insertAdjacentHTML("beforeend", `<h2>No tasks present</h2>`);
         return;
     }
-    tasksToShow.forEach((task, index)=>{
-        taskHolder.insertAdjacentHTML("beforeend", task.getTaskMarkup(index));
+
+    tasksToShow.forEach( (task, index) => {
+        TASKS_HOLDER.insertAdjacentHTML("beforeend", task.getTaskMarkup(index) );
     });
 }
 
@@ -48,7 +53,20 @@ export function updateDone() {
     refreshTasks(tasksPresent);
 }
 
-export function deleteAt(index){
+export function deleteAt(index) {
     tasksPresent.splice(index, 1);
+
     refreshTasks(tasksPresent);
+}
+
+export function isDateInvalid(start, end) {
+    return start > end || start < Date.now() - MILISECONDS_IN_DAY || end < Date.now() || MODAL_TEXT.value === "";
+}
+
+export function getDateFromInput(source) {
+     return source.value.split("-").reverse().join(".");
+}
+
+export function checkChildType(child, type) {
+    return child.classList.contains(type);
 }
