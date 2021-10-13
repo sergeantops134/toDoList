@@ -4,16 +4,18 @@ export class Task {
     end;
     isCompleted;
     toBeDisplayed;
+    isFiltered;
 
     constructor(obj) {
         Object.assign(this, obj);
         this.isCompleted = false;
         this.toBeDisplayed = true;
+        this.isFiltered = true;
     }
 
     getTaskMarkup(index) {
         return `
-        <div class="task${this.isCompleted ? " done" : ""}${this.toBeDisplayed ? "" : " hide"}">
+        <div class="task${this.isCompleted ? " done" : ""}${this.toBeDisplayed && this.isFiltered ? "" : " hide"}">
             <div class="task-controls">
                 <input type="checkbox" class="is-done" ${this.isCompleted ? "checked" : ""}>
             </div>

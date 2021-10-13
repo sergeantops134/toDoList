@@ -125,12 +125,12 @@ SORT_BY_END_BUTTON.addEventListener("click", function sortByDeadline() {
 
 FILTER_BUTTON.addEventListener("click", function filter(){
     const filterText = FILTER_TEXT_INPUT.value;
-    const filterEnd = getDateFromInput(FILTER_END_INPUT)
+    const filterEnd = getDateFromInput(FILTER_END_INPUT);
         tasksPresent.forEach( (task) => {
             const isTextValid = filterText ? task.description.includes(filterText) : true;
             const isEndValid = filterEnd ? task.end === filterEnd : true;
 
-            task.toBeDisplayed = isEndValid && isTextValid;
+            task.isFiltered = isEndValid && isTextValid;
         });
 
     refreshTasks();
