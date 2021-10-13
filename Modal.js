@@ -1,5 +1,5 @@
 import {Task} from "./Task.js"
-import {MODAL_END_INPUT, MODAL_START_INPUT, MODAL_TEXT, tasksPresent} from "./const.js";
+import {DOCUMENT_BODY, MODAL_END_INPUT, MODAL_START_INPUT, MODAL_TEXT, tasksPresent} from "./const.js";
 
 
 export class Modal {
@@ -9,7 +9,7 @@ export class Modal {
 
     constructor() {
         this.modal = document.querySelector(".modal");
-        this.body = document.querySelector("body");
+        this.body = DOCUMENT_BODY;
     }
 
     showModal(taskIndex) {

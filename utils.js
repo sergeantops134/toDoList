@@ -22,22 +22,28 @@ export function addDefault(event) {
     event.target.value = "";
 }
 
-export function refreshTasks(tasksToShow) {
+export function refreshTasks() {
     TASKS_HOLDER.innerHTML = "";
 
-    if(!(tasksToShow.length)) {
+    if(!(tasksPresent.length)) {
         TASKS_HOLDER.insertAdjacentHTML("beforeend", `<h2>No tasks present</h2>`);
         return;
     }
 
-    tasksToShow.forEach( (task, index) => {
+    tasksPresent.forEach( (task, index) => {
         TASKS_HOLDER.insertAdjacentHTML("beforeend", task.getTaskMarkup(index) );
     });
 }
 
-export function getTimeStamp(str) {
+export function getInputTimeStamp(str) {
     const time = str.split("-");
     time[1] -= 1;
+    return new Date(...time).getTime();
+}
+
+export function getTimeStamp(str) {
+    const time = str.split(".").reverse();
+    time [1] -= 1;
     return new Date(...time).getTime();
 }
 
