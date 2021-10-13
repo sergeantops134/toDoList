@@ -27,7 +27,7 @@ h1 {
 
 .text-input {
     border-radius: 3px;
-    margin: 20px 0 0 15%;
+    margin: 0 0 0 15%;
     width: 400px;
     display: inline-block;
 }
@@ -74,11 +74,7 @@ h1 {
     overflow: hidden;
 }
 
-.text-button {
-border-radius: 3px;
-    margin: 10px;
-    cursor: pointer;
-}
+
 .text {
     display: inline-block;
     margin: 5px 5px 0 10px;
@@ -128,8 +124,15 @@ border-radius: 3px;
     background-image: url(https://image.flaticon.com/icons/png/512/122/122105.png);
 }
 
+.text-button {
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0 5px 10px 5px;
+    cursor: pointer;
+}
+
 .plus-button {
-    margin: 20px 0 0 0;
+    margin: 0 5px 10px 5px;
     display: inline-block;
     border-radius: 3px;
     cursor: pointer;
@@ -138,7 +141,7 @@ border-radius: 3px;
 .sort-button {
     width: 20px;
     height: 20px;
-    margin: 20px 0 0 0;
+    margin: 0 5px 10px 5px;
     display: inline-block;
     border-radius: 3px;
     cursor: pointer;
@@ -177,4 +180,5 @@ border-radius: 3px;
 .controls-container {
     display: flex;
     align-items: start;
+    padding-bottom: 50px;
 }
