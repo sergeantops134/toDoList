@@ -22,7 +22,7 @@ export class Task {
                 <p>Ends: ${this.end}</p>
             </div>  
             <div class="task-delete">
-                <button class="pencil-button" value="${index}"></button>
+                <button class="pencil-button ${this.isCompleted ? " hide" : ""}" value="${index}"></button>
                 <button class="cros-button" value="${index}">X</button>
             </div>          
         <div>
