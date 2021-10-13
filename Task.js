@@ -3,18 +3,21 @@ export class Task {
     start;
     end;
     isCompleted;
+    toBeDisplayed;
+    isFiltered;
 
     constructor(obj) {
-        Object.assign(this, obj)
-
+        Object.assign(this, obj);
         this.isCompleted = false;
+        this.toBeDisplayed = true;
+        this.isFiltered = true;
     }
 
     getTaskMarkup(index) {
         return `
-        <div class="task${this.isCompleted ? " done" : ""}">
+        <div class="task${this.isCompleted ? " done" : ""}${this.toBeDisplayed && this.isFiltered ? "" : " hide"}">
             <div class="task-controls">
-            <input type="checkbox" class="is-done" ${this.isCompleted ? "checked" : ""}>
+                <input type="checkbox" class="is-done" ${this.isCompleted ? "checked" : ""}>
             </div>
             <div class="task-text">
                 <p>Task: ${this.description}</p>
@@ -22,10 +25,16 @@ export class Task {
                 <p>Ends: ${this.end}</p>
             </div>  
             <div class="task-delete">
-            <button class="cros-button" value="${index}">X</button>
+                <button class="pencil-button ${this.isCompleted ? " hide" : ""}" value="${index}"></button>
+                <button class="cros-button" value="${index}">X</button>
             </div>          
         <div>
     `;
     }
 
+    getInputDate(selector) {
+        return this[selector].split(".").reverse().join("-");
+    }
 }
+
+
